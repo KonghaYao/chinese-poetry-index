@@ -1,0 +1,19 @@
+{
+    "name": "chinese-poetry-index",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "node ./src/maker.mjs",
+        "build:index": "node ./src/createIndex.mjs",
+        "open": "docker-compose up -d"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "chinese-poetry": "github:chinese-poetry/chinese-poetry",
+        "fs-extra": "^10.1.0"
+    },
+    "dependencies": {}
+}

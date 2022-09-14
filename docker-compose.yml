@@ -1,0 +1,26 @@
+version: "3"
+services:
+    meilisearch:
+        image: getmeili/meilisearch:v0.28
+        restart: always
+        volumes:
+            - ./meili_data:/meili_data
+        ports:
+            - "7700:7700"
+        environment:
+            - MEILI_MASTER_KEY=${MEILI_MASTER_KEY}
+        container_name: meili_chinese_poetry
+        expose:
+            - "7700"
+    injecter:
+        restart: on-failure:3
+        container_name: data_injecter
+        build: .
+        depends_on:
+            - meilisearch
+        volumes:
+            - ./csv:/csv
+            - ./scripts:/scripts
+        tty: true
+        environment:
+            - MEILI_MASTER_KEY=${MEILI_MASTER_KEY}
