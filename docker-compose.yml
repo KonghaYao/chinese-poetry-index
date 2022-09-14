@@ -24,3 +24,4 @@ services:
         tty: true
         environment:
             - MEILI_MASTER_KEY=${MEILI_MASTER_KEY}
+            - MEILI_SERVER=${MEILI_SERVER}
