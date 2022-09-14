@@ -1,0 +1,22 @@
+# 建立一个名为deploy的工作流
+name: deploy
+
+# 监听 master上的push事件
+on:
+    push:
+        branches: [master]
+    schedule:
+        - cron: '0 12,23 * * *'
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: 安装 CURL
+              run: apt install curl
+            - name: 安装 Okteto
+              run: curl https://get.okteto.com -sSfL | sh
+
+            - name: 使用 Okteto 官网
+              run: okteto context use https://cloud.okteto.com --token ${{secrets.OKTETO_AUTH}}
+            - name: 自动部署
+              run: okteto pipeline deploy --namespace konghayao --repository "git@github.com:KonghaYao/chinese-poetry-index.git" --branch master --var MEILI_MASTER_KEY=${{secrets.MEILI_MASTER_KEY}} --var MEILI_SERVER=http://meilisearch:7700
