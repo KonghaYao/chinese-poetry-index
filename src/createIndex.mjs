@@ -15,7 +15,6 @@ const Checker = (i) => {
         throw e;
     }
 };
-
 const PreProcess = (i) => {
     Checker(i);
 
@@ -40,6 +39,7 @@ const jsonToCSV = (json) => {
     });
 };
 import XLSX from "xlsx";
+import { chunk } from "./chunk.mjs";
 Promise.all(
     fse.readdirSync("./dist").map((i) => fse.readJSON("./dist/" + i))
 ).then((data) => {
@@ -58,14 +58,7 @@ Promise.all(
         .map(PreProcess);
     temp_dup.forEach((i) => console.log(i));
     console.log("重复", temp_dup.length);
-    const chunk = (info, size, cb) => {
-        let num = Math.floor(info.length / size);
-        while (num >= 0) {
-            const json = info.slice(num * size, (num + 1) * size);
-            cb(json, num);
-            num--;
-        }
-    };
+
     console.log(info.length);
     fse.emptyDirSync("./csv");
 

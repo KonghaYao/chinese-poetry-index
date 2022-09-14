@@ -10,20 +10,13 @@ index = client.index('poetry')
 dirs = os.listdir( '../csv' )
 print("共",len(dirs))
 index.update_filterable_attributes([
-    'belongTo',
+    'belongToName',
+    "author"
 ])
 index.update_ranking_rules([
     'author',
     'title',
-    'content',
 ])
-client.create_key(options={
-  'description': 'Viewer Key',
-  'actions': ["search"],
-  'indexes': ['poetry'],
-  'expiresAt': None,
-  "uid":"8866472f-a457-470b-94ab-7248e9801049"
-})
 
 # 输出所有文件和文件夹
 import csv
@@ -37,3 +30,14 @@ for path in dirs:
         index.add_documents(col,'id')
         print(path,"完成")
         
+try:
+    Key = client.get_key("8866472f-a457-470b-94ab-7248e9801049")
+except:
+     Key =client.create_key(options={
+        'description': 'Viewer Key',
+        'actions': ["search"],
+        'indexes': ['poetry'],
+        'expiresAt': None,
+        "uid":"8866472f-a457-470b-94ab-7248e9801049"
+    })
+print('你可以使用',Key.get('key'))

@@ -14,6 +14,23 @@
 import fse from "fs-extra";
 export default [
     {
+        base: fse
+            .readdirSync("./node_modules/chinese-poetry/json")
+            .filter((i) => i.startsWith("poet.song"))
+            .map((i) => {
+                return "json/" + i;
+            }),
+
+        name: "全宋词",
+        transform(i) {
+            return {
+                title: i.title,
+                author: i.author,
+                content: i.paragraphs,
+            };
+        },
+    },
+    {
         base: "caocaoshiji/caocao.json",
         name: "曹操诗集",
         // 将整个 json 文件 转化为 JSON 规范对象的数组
@@ -138,40 +155,6 @@ export default [
         },
     },
 
-    {
-        base: fse
-            .readdirSync("./node_modules/chinese-poetry/json")
-            .filter((i) => i.startsWith("poet.tang"))
-            .map((i) => {
-                return "json/" + i;
-            }),
-
-        name: "全唐诗",
-        transform(i) {
-            return {
-                title: i.title,
-                author: i.author,
-                content: i.paragraphs,
-            };
-        },
-    },
-    {
-        base: fse
-            .readdirSync("./node_modules/chinese-poetry/json")
-            .filter((i) => i.startsWith("poet.song"))
-            .map((i) => {
-                return "json/" + i;
-            }),
-
-        name: "全宋词",
-        transform(i) {
-            return {
-                title: i.title,
-                author: i.author,
-                content: i.paragraphs,
-            };
-        },
-    },
     {
         base: [
             "mengxue/sanzijing-traditional.json",
@@ -344,6 +327,23 @@ export default [
                     };
                 });
             });
+        },
+    },
+    {
+        base: fse
+            .readdirSync("./node_modules/chinese-poetry/json")
+            .filter((i) => i.startsWith("poet.tang"))
+            .map((i) => {
+                return "json/" + i;
+            }),
+
+        name: "全唐诗",
+        transform(i) {
+            return {
+                title: i.title,
+                author: i.author,
+                content: i.paragraphs,
+            };
         },
     },
 ];
