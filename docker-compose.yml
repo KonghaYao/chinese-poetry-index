@@ -13,7 +13,7 @@ services:
         expose:
             - "7700"
     injecter:
-        restart: on-failure:3
+        restart: always
         container_name: data_injecter
         build: .
         depends_on:
