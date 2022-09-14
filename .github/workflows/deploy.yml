@@ -11,8 +11,6 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-            - name: 安装 CURL
-              run: apt install curl
             - name: 安装 Okteto
               run: curl https://get.okteto.com -sSfL | sh
 
