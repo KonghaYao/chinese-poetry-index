@@ -13,7 +13,6 @@ services:
         expose:
             - "7700"
     injecter:
-        restart: always
         container_name: data_injecter
         build: .
         depends_on:
@@ -21,7 +20,6 @@ services:
         volumes:
             - ./csv:/csv
             - ./scripts:/scripts
-        tty: true
         environment:
             - MEILI_MASTER_KEY=${MEILI_MASTER_KEY}
             - MEILI_SERVER=${MEILI_SERVER}

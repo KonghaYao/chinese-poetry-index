@@ -9,6 +9,7 @@ lerna-debug.log*
 csv
 meili_data
 .env
+test.py
 
 node_modules
 dist
