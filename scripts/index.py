@@ -14,9 +14,14 @@ index.update_filterable_attributes([
     "author"
 ])
 index.update_ranking_rules([
-    'author',
-    'title',
+    "words",
+  "proximity",
+  "exactness",
+  "attribute",
+  "sort",
+    "typo",
 ])
+
 
 # 输出所有文件和文件夹
 import csv
@@ -33,7 +38,7 @@ for path in dirs:
 try:
     Key = client.get_key("8866472f-a457-470b-94ab-7248e9801049")
 except:
-     Key =client.create_key(options={
+     Key = client.create_key(options={
         'description': 'Viewer Key',
         'actions': ["search"],
         'indexes': ['poetry'],

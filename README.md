@@ -16,6 +16,7 @@ pnpm build:index # 建立索引 csv 文件，将会建立在 csv 文件
 
 ```txt
 MEILI_MASTER_KEY=PASSWORD
+MEILI_SERVER=http://meilisearch:7700
 ```
 
 ## 启动 docker 自动部署

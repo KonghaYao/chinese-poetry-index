@@ -9,7 +9,7 @@ services:
             - "7700:7700"
         environment:
             - MEILI_MASTER_KEY=${MEILI_MASTER_KEY}
-        container_name: meili_chinese_poetry
+        container_name: meilisearch
         expose:
             - "7700"
     injecter:
