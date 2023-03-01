@@ -8,7 +8,19 @@ const client = new MeiliSearch({
     apiKey: process.env.MEILI_MASTER_KEY,
 });
 const Index = client.index("poetry");
-
+Index.updateSettings({
+    filterableAttributes: ["belongToName", "author"],
+    rankingRules: [
+        "attribute",
+        "typo",
+        "exactness",
+        "words",
+        "proximity",
+        "sort",
+    ],
+    distinctAttribute: "id",
+    searchableAttributes: ["title", "author", "content", "id"],
+});
 console.time("计算耗时");
 for (let index = 0; index < 65; index++) {
     const files = await fs.readJSON(`./json/${index}.json`);
