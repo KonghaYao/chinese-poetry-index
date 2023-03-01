@@ -1,7 +1,7 @@
 version: "3"
 services:
     meilisearch:
-        image: getmeili/meilisearch:v0.28
+        image: getmeili/meilisearch:v1.0
         restart: always
         volumes:
             - ./meili_data:/meili_data
@@ -17,9 +17,5 @@ services:
         build: .
         depends_on:
             - meilisearch
-        volumes:
-            - ./csv:/csv
-            - ./scripts:/scripts
         environment:
             - MEILI_MASTER_KEY=${MEILI_MASTER_KEY}
-            - MEILI_SERVER=${MEILI_SERVER}

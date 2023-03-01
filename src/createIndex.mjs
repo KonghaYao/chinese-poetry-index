@@ -21,8 +21,8 @@ const PreProcess = (i) => {
     /**
      * * 削减 content 大小，保证能用
      * */
-    // i.content = i.content.join(" ").slice(0, 10);
-    delete i.content;
+    i.content = i.content.join("\n");
+    // delete i.content;
     delete i.notes;
     i.id = i.tag;
     delete i.tag;
@@ -65,7 +65,7 @@ Promise.all(
     const needChunk = true;
     if (needChunk) {
         chunk(info, 5000, (json, index) => {
-            fse.outputFile("./csv/" + index + ".csv", jsonToCSV(json));
+            fse.outputJSON("./json/" + index + ".json", json);
         });
     } else {
         fse.outputJSON("./json/default.json", jsonToCSV(info));

@@ -6,14 +6,20 @@
     "scripts": {
         "build": "node ./src/maker.mjs",
         "build:index": "node ./src/createIndex.mjs",
-        "open": "docker-compose up -d"
+        "build:pick-index": "node ./src/PickIndex.mjs",
+        "open": "docker-compose up -d",
+        "upload": "node ./src/meiliUpload.mjs"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "devDependencies": {
-        "chinese-poetry": "github:chinese-poetry/chinese-poetry",
         "fs-extra": "^10.1.0"
     },
-    "dependencies": {}
+    "dependencies": {
+        "chinese-poetry": "github:chinese-poetry/chinese-poetry",
+        "meilisearch": "^0.31.1",
+        "uuid": "^9.0.0",
+        "xlsx": "^0.18.5"
+    }
 }

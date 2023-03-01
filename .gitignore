@@ -10,6 +10,7 @@ csv
 meili_data
 .env
 test.py
+json
 
 node_modules
 dist

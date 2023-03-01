@@ -9,7 +9,7 @@
 ```sh
 pnpm install
 pnpm build # 规范化 原始数据文件，将会存储在 dist 目录
-pnpm build:index # 建立索引 csv 文件，将会建立在 csv 文件
+pnpm build:index # 建立索引 json 文件，将会建立在 json 目录
 ```
 
 ## 创建 .env 文件
