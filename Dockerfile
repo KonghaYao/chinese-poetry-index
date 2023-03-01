@@ -8,4 +8,5 @@ WORKDIR /app
 RUN npm install -g npm
 RUN npm install pnpm -g
 RUN pnpm i 
+RUN chmod 777 /app/init.sh
 CMD '/app/init.sh'
