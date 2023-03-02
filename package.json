@@ -8,7 +8,8 @@
         "build:index": "node ./src/createIndex.mjs",
         "build:pick-index": "node ./src/PickIndex.mjs",
         "open": "docker-compose up -d",
-        "upload": "node ./src/meiliUpload.mjs"
+        "upload": "node ./src/meiliUpload.mjs",
+        "upload:mongo": "node ./src/mongoUpload.mjs"
     },
     "keywords": [],
     "author": "",
@@ -19,6 +20,7 @@
     "dependencies": {
         "chinese-poetry": "github:chinese-poetry/chinese-poetry",
         "meilisearch": "^0.31.1",
+        "mongoose": "^7.0.0",
         "uuid": "^9.0.0",
         "xlsx": "^0.18.5"
     }

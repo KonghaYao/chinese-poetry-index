@@ -23,7 +23,7 @@ const PreProcess = (i) => {
      * */
     i.content = i.content.join("\n");
     // delete i.content;
-    delete i.notes;
+    if (i.notes) i.notes = i.notes.join("\n");
     i.id = i.tag;
     delete i.tag;
     return i;

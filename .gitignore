@@ -12,6 +12,8 @@ meili_data
 test.py
 json
 
+data
+test
 node_modules
 dist
 dist-ssr

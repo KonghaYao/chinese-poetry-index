@@ -1,4 +1,4 @@
-# 建立一个名为deploy的工作流
+# 建立一个名为deploy的工作流, 每日自动推送仓库到 okteto
 name: deploy
 
 # 监听 master上的push事件
@@ -6,7 +6,7 @@ on:
     push:
         branches: [master]
     schedule:
-        - cron: "0 12 * * *"
+        - cron: "0 16 * * *"
 jobs:
     build:
         runs-on: ubuntu-latest
