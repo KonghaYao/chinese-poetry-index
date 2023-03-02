@@ -22,8 +22,9 @@ Index.updateSettings({
     searchableAttributes: ["title", "author", "content", "id"],
 });
 console.time("计算耗时");
-for (let index = 0; index < 65; index++) {
-    const files = await fs.readJSON(`./json/${index}.json`);
+const items = await fs.readdir("./json");
+for (let index of items) {
+    const files = await fs.readJSON(`./json/${index}`);
     await Index.addDocuments(files);
     console.log(index);
 }

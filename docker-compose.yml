@@ -12,31 +12,11 @@ services:
         container_name: meilisearch
         expose:
             - "7700"
-    mongo:
-        image: mongo
-        restart: always
-        command: [--auth]
-        environment:
-            TZ: Asia/Shanghai
-            MONGO_INITDB_ROOT_USERNAME: root
-            MONGO_INITDB_ROOT_PASSWORD: MONGODB_INFO
-        expose:
-            - "27017"
-    mongo-express:
-        image: mongo-express
-        restart: always
-        ports:
-            - 8081:8081
-        environment:
-            ME_CONFIG_MONGODB_ADMINUSERNAME: root
-            ME_CONFIG_MONGODB_ADMINPASSWORD: MONGODB_INFO
-            ME_CONFIG_MONGODB_URL: mongodb://root:MONGODB_INFO@mongo:27017/
     injecter:
         restart: none
         container_name: data_injecter
         build: .
         depends_on:
             - meilisearch
-            - mongo
         environment:
             - MEILI_MASTER_KEY=${MEILI_MASTER_KEY}
