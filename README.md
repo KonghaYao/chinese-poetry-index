@@ -50,3 +50,9 @@ MEILI_SERVER=http://meilisearch:7700
 ```
 docker-compose up -d
 ```
+
+ps: docker 容器需要静置一会，等数据充分加载到 meilisearch 中，然后打开 localhost:7700
+
+## 数据迁移
+
+meilisearch 的数据都在 meili_data 这个文件夹中

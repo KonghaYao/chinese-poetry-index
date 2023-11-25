@@ -1,7 +1,7 @@
 version: "3"
 services:
     meilisearch:
-        image: getmeili/meilisearch:v1.0
+        image: getmeili/meilisearch:v1.5
         restart: always
         volumes:
             - ./meili_data:/meili_data
@@ -13,8 +13,7 @@ services:
         expose:
             - "7700"
     injecter:
-        restart: none
-        container_name: data_injecter
+        container_name: data_uploader
         build: .
         depends_on:
             - meilisearch

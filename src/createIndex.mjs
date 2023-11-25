@@ -9,6 +9,7 @@ const Checker = (i) => {
     try {
         if (!("tag" in i)) throw new Error("tag 字段缺失");
         if (!("belongTo" in i)) throw new Error("belongTo 字段缺失");
+        if (!("content" in i)) throw new Error("content 字段缺失");
         if (i.content.some((i) => typeof i !== "string"))
             throw new Error("content has item not string");
     } catch (e) {

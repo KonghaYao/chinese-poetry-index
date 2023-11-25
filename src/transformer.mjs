@@ -164,7 +164,7 @@ export default [
             return {
                 author: i.author,
                 title: i.title,
-                content: i.paragraphs,
+                content: i.paragraphs ?? [],
                 notes: [i.prologue]
             };
         },
