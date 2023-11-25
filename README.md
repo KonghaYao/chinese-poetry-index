@@ -1,6 +1,8 @@
 # chinese-poetry-index
 
-这个是构建 chinese-poetry 仓库索引的一个库，目的是抽离出规范的文本特征对象，以便我们能够统一调用
+这个是构建 [chinese-poetry](https://github.com/chinese-poetry/chinese-poetry) 仓库索引的一个库，目的是抽离出规范的文本特征对象，以便我们能够统一调用。不仅如此，我们还构建了一个全文搜索容器，你可以在面板中搜索超过 7 万条数据，检索时间不超过 10ms！
+
+![](./images/meilisearch.png)
 
 1. 曹操诗集
 2. 楚辞
