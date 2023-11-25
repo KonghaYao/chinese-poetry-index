@@ -12,10 +12,12 @@
  *
  */
 import fse from "fs-extra";
+
+/** 用于将 github 仓库中不规范的 json 转换为统一的 json 格式 */
 export default [
     {
         base: fse
-            .readdirSync("./node_modules/chinese-poetry/json")
+            .readdirSync("./node_modules/chinese-poetry/宋词")
             .filter((i) => i.startsWith("poet.song"))
             .map((i) => {
                 return "json/" + i;
@@ -31,7 +33,7 @@ export default [
         },
     },
     {
-        base: "caocaoshiji/caocao.json",
+        base: "曹操诗集/caocao.json",
         name: "曹操诗集",
         // 将整个 json 文件 转化为 JSON 规范对象的数组
         transform(i) {
@@ -40,7 +42,7 @@ export default [
         },
     },
     {
-        base: "chuci/chuci.json",
+        base: "楚辞/chuci.json",
         name: "楚辞",
         // 将整个 json 文件 转化为 JSON 规范对象的数组
         transform(i) {
@@ -54,7 +56,7 @@ export default [
         },
     },
     {
-        base: "yuanqu/yuanqu.json",
+        base: "元曲/yuanqu.json",
         name: "元曲",
         // 将整个 json 文件 转化为 JSON 规范对象的数组
         transform(i) {
@@ -67,7 +69,7 @@ export default [
         },
     },
     {
-        base: "nalanxingde/纳兰性德诗集.json",
+        base: "纳兰性德/纳兰性德诗集.json",
         name: "纳兰性德诗集",
         // 将整个 json 文件 转化为 JSON 规范对象的数组
         transform(i) {
@@ -80,7 +82,7 @@ export default [
         },
     },
     {
-        base: "lunyu/lunyu.json",
+        base: "论语/lunyu.json",
         name: "论语",
         // 将整个 json 文件 转化为 JSON 规范对象的数组
         transform(i) {
@@ -92,7 +94,7 @@ export default [
         },
     },
     {
-        base: "shijing/shijing.json",
+        base: "诗经/shijing.json",
         name: "诗经",
         transform(i) {
             return {
@@ -104,9 +106,9 @@ export default [
     },
     {
         base: [
-            "sishuwujing/daxue.json",
-            "sishuwujing/mengzi.json",
-            "sishuwujing/zhongyong.json",
+            "四书五经/daxue.json",
+            "四书五经/mengzi.json",
+            "四书五经/zhongyong.json",
         ],
         name: "四书五经",
         transform(i) {
@@ -119,13 +121,13 @@ export default [
 
     {
         base: fse
-            .readdirSync("./node_modules/chinese-poetry/wudai/huajianji")
+            .readdirSync("./node_modules/chinese-poetry/五代诗词/huajianji")
             .filter((i) => i.startsWith("huajianji"))
             .map((i) => {
-                return "wudai/huajianji/" + i;
+                return "五代诗词/huajianji/" + i;
             }),
         rebase(path) {
-            return path.replace("wudai/", "");
+            return path.replace("五代诗词/", "");
         },
         name: "花间集",
         transform(i) {
@@ -139,9 +141,9 @@ export default [
         },
     },
     {
-        base: "wudai/nantang/poetrys.json",
+        base: "五代诗词/nantang/poetrys.json",
         rebase(path) {
-            return path.replace("wudai/", "");
+            return path.replace("五代诗词/", "");
         },
         name: "南唐二主词",
         transform(i) {
@@ -154,11 +156,23 @@ export default [
             };
         },
     },
-
+    {
+        base: ["水墨唐诗/shuimotangshi.json",],
+        name: "水墨唐诗",
+        transform(i) {
+            if (!('paragraphs' in i)) console.log(i)
+            return {
+                author: i.author,
+                title: i.title,
+                content: i.paragraphs,
+                notes: [i.prologue]
+            };
+        },
+    },
     {
         base: [
-            "mengxue/sanzijing-traditional.json",
-            "mengxue/sanzijing-new.json",
+            "蒙学/sanzijing-traditional.json",
+            "蒙学/sanzijing-new.json",
         ],
         name: "三字经",
         transform(i) {
@@ -170,7 +184,7 @@ export default [
         },
     },
     {
-        base: ["mengxue/qianziwen.json"],
+        base: ["蒙学/qianziwen.json"],
         name: "千字文",
         transform(i) {
             return {
@@ -181,7 +195,7 @@ export default [
         },
     },
     {
-        base: ["mengxue/baijiaxing.json"],
+        base: ["蒙学/baijiaxing.json"],
         name: "百家姓",
         transform(i) {
             return {
@@ -195,7 +209,7 @@ export default [
         },
     },
     {
-        base: ["mengxue/zhuzijiaxun.json"],
+        base: ["蒙学/zhuzijiaxun.json"],
         name: "朱子家訓",
         transform(i) {
             return {
@@ -206,7 +220,7 @@ export default [
         },
     },
     {
-        base: ["mengxue/shenglvqimeng.json"],
+        base: ["蒙学/shenglvqimeng.json"],
         name: "声律启蒙",
         transform(i) {
             return i.content.map((ii) => {
@@ -221,7 +235,7 @@ export default [
         },
     },
     {
-        base: ["mengxue/wenzimengqiu.json"],
+        base: ["蒙学/wenzimengqiu.json"],
         name: "文字蒙求",
         transform(i) {
             return i.content.map((ii) => {
@@ -233,7 +247,7 @@ export default [
         },
     },
     {
-        base: ["mengxue/zengguangxianwen.json"],
+        base: ["蒙学/zengguangxianwen.json"],
         name: "增廣賢文",
         transform(i) {
             return i.content.map((ii) => {
@@ -246,7 +260,7 @@ export default [
         },
     },
     {
-        base: ["mengxue/dizigui.json"],
+        base: ["蒙学/dizigui.json"],
         name: "弟子规",
         transform(i) {
             return i.content.map((ii) => {
@@ -260,7 +274,7 @@ export default [
     },
 
     {
-        base: ["mengxue/guwenguanzhi.json"],
+        base: ["蒙学/guwenguanzhi.json"],
         name: "古文观止",
         transform(i) {
             return i.content.flatMap((ii) => {
@@ -275,7 +289,7 @@ export default [
         },
     },
     {
-        base: ["mengxue/youxueqionglin.json"],
+        base: ["蒙学/youxueqionglin.json"],
         name: "幼学琼林",
         transform(i) {
             return i.content.flatMap((ii) => {
@@ -290,7 +304,7 @@ export default [
         },
     },
     {
-        base: ["mengxue/qianjiashi.json"],
+        base: ["蒙学/qianjiashi.json"],
         name: "千家诗",
         transform(total) {
             return total.content.flatMap((ii) => {
@@ -310,7 +324,7 @@ export default [
         },
     },
     {
-        base: ["mengxue/tangshisanbaishou.json"],
+        base: ["蒙学/tangshisanbaishou.json"],
         name: "唐诗三百首",
         transform(total) {
             return total.content.flatMap((ii) => {
@@ -331,10 +345,10 @@ export default [
     },
     {
         base: fse
-            .readdirSync("./node_modules/chinese-poetry/json")
+            .readdirSync("./node_modules/chinese-poetry/全唐诗")
             .filter((i) => i.startsWith("poet.tang"))
             .map((i) => {
-                return "json/" + i;
+                return "全唐诗/" + i;
             }),
 
         name: "全唐诗",

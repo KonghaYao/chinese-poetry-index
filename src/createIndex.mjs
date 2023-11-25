@@ -3,6 +3,7 @@
  */
 import fse from "fs-extra";
 const temp = new Set();
+
 /** 预先检查对象是否有误 */
 const Checker = (i) => {
     try {
