@@ -3,7 +3,7 @@ export const Tagger = {
     gen(i) {
         return v5(
             // title + content 并不能保证唯一性
-            [i.title, i.subTitle, i.author, i.content.join("")].join(""),
+            [i.title, i.subTitle, i.author, (i.content || []).join("")].join(""),
             v5.URL
         );
     },
