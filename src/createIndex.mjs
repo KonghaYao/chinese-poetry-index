@@ -64,12 +64,9 @@ Promise.all(
     console.log(info.length);
     fse.emptyDirSync("./csv");
 
-    const needChunk = true;
-    if (needChunk) {
-        chunk(info, 5000, (json, index) => {
-            fse.outputJSON("./json/" + index + ".json", json);
-        });
-    } else {
-        fse.outputJSON("./json/default.json", jsonToCSV(info));
-    }
+    chunk(info, 5000, (json, index) => {
+        fse.outputJSON("./json/" + index + ".json", json);
+    });
+    fse.outputJSON("./json/default.json", info);
+
 });

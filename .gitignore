@@ -29,3 +29,5 @@ visualizer
 *.njsproj
 *.sln
 *.sw?
+libsimple-osx-x64
+*.sqlite
